@@ -5,6 +5,8 @@ import SignUpContainer from './Components/SignUpContainer';
 import { ApiContext } from './apicontext';
 import MembersList from './Components/EmailManagement/Memberslist';
 import Newsletter from './Components/EmailManagement/Newsletter';
+import NewsletterEditor from './Components/NewletterManagement/NewsletterEditor';
+import PendingNewsletters from './Components/NewletterManagement/pending_newsletters';
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <>
           <LoginModal />
           <SignUpContainer />
+          <PendingNewsletters />
+          <NewsletterEditor />
           <MembersList />
           <Newsletter />
         </>
