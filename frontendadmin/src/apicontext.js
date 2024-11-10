@@ -44,6 +44,28 @@ export const ApiProvider = ({ children }) => {
         }
     }
 
+    const createNewsletter = async (title, content) => {
+        try {
+            const response = await axios.post('/api/create_newsletter/', {title, content});
+            return response.data;
+        } catch (error) {
+            throw new Error(error.response.data.message || 'Error creating newsletter');
+        }
+    };
+
+    const generateNewsletter = async (prompt) => {
+        setLoading(true);
+        try {
+            const response = await axios.post('/api/generate_newsletter/', {prompt});
+            return response.data;
+        } catch (err) {
+            setError(err.message);
+            throw new Error(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const login = async (email, password) => {
         try {
             const response = await axios.post('/api/login', { email, password });
@@ -55,7 +77,7 @@ export const ApiProvider = ({ children }) => {
     };
 
     return (
-        <ApiContext.Provider value={{ pending_newsletters, approveNewsletter, signUp, loading, error, login, user }}>
+        <ApiContext.Provider value={{ pending_newsletters, generateNewsletter, approveNewsletter, signUp, loading, error, login, user, createNewsletter }}>
             {children}
         </ApiContext.Provider>
     )
