@@ -50,7 +50,7 @@ To get started with the project, follow these steps:
 5. start the server
     npm start
 
-##API Integration
+## API Integration
 
 This application integrates with a backend API to handle newsletter generation and management. Ensure that your backend is running and accessible. The API endpoints used in this application include:
 
@@ -58,7 +58,7 @@ POST /api/generate-newsletter: Generates a newsletter based on a provided prompt
 POST /api/newsletters: Publishes a new newsletter.
 GET /api/pending_newsletters: Fetches pending newsletters for approval.
 
-##Contact
+## Contact
 
 For any inquiries or feedback, please reach out to:
 
