@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import LoginModal from './LoginModel'
 import SignUpContainer from './Components/SignUpContainer';
 import { ApiContext } from './apicontext';
+import MembersList from './Components/EmailManagement/Memberslist';
+import Newsletter from './Components/EmailManagement/Newsletter';
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
         <>
           <LoginModal />
           <SignUpContainer />
+          <MembersList />
+          <Newsletter />
         </>
       )};
     </div>

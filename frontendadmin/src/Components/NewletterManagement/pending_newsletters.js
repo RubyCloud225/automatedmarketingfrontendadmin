@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { ApiContext } from '../apicontext';
+import { ApiContext } from '../../apicontext';
 
 const PendingNewsletters = () => {
     const { fetchpending_newsletters, pendingNewsletters, loading, error, approveNewsletter } = useContext(ApiContext);

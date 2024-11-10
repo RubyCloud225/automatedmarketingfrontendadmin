@@ -8,6 +8,7 @@ export const ApiProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [pending_newsletters, setPending_Newsletters] = useState([])
     const [error, setError] = useState(null);
+    const [members, setMembers] = useState([]);
     const [user, setUser ] = useState(null);
 
     useEffect(() => {
@@ -24,6 +25,23 @@ export const ApiProvider = ({ children }) => {
 
         fetchpending_newsletters();
     }, []);
+
+    useEffect(() => {
+        fetch('/api/members')
+            .then(response => response.json())
+            .then(data => setMembers(data))
+            .catch(error => console.error('Error fetching members:', error));
+    }, []);
+
+    const sendNewsletter = (memberIds, newsletterContent) => {
+        return fetch('/api/send-newsletter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ memberIds: memberIds, newsletter_Content: newsletterContent }),
+        })
+        .then(response => response.json())
+        .catch(error => console.error('Error sending newsletter:', error));
+    };
 
     const signUp = async (email, password, name) => {
         try {
@@ -77,7 +95,7 @@ export const ApiProvider = ({ children }) => {
     };
 
     return (
-        <ApiContext.Provider value={{ pending_newsletters, generateNewsletter, approveNewsletter, signUp, loading, error, login, user, createNewsletter }}>
+        <ApiContext.Provider value={{ members, sendNewsletter, pending_newsletters, generateNewsletter, approveNewsletter, signUp, loading, error, login, user, createNewsletter }}>
             {children}
         </ApiContext.Provider>
     )
